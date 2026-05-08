@@ -40,11 +40,28 @@
 
 .preloader-tagline {
   font-family: 'Poppins', sans-serif;
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   text-transform: uppercase;
-  letter-spacing: 0.3em;
-  color: #555555;
+  letter-spacing: 0.35rem; /* More breathability */
+  color: #666666;
   font-weight: 600;
+}
+
+.preloader-icons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  color: #10b981;
+}
+
+.loading-icon {
+  opacity: 0.8;
+  filter: drop-shadow(0 0 15px rgba(16, 185, 129, 0.3));
+}
+
+.icon-bike {
+  color: #ffffff;
 }
 
 /* FOOTER / PROGRESS */

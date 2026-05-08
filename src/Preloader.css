@@ -25,17 +25,11 @@
   text-align: center;
 }
 
-.preloader-logo {
-  font-family: 'Chillax', sans-serif;
-  font-size: 3.5rem;
-  font-weight: 800;
-  color: #ffffff;
-  letter-spacing: -0.05em;
-  margin-bottom: 0.5rem;
-}
-
-.preloader-logo .dot {
-  color: #10b981;
+.preloader-logo-img {
+  width: 120px;
+  height: auto;
+  margin-bottom: 1.5rem;
+  filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.1));
 }
 
 .preloader-tagline {

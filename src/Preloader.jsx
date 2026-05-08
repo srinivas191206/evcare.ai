@@ -4,6 +4,8 @@ import gsap from 'gsap';
 
 import { Bike, Wrench, Zap } from 'lucide-react';
 
+import logoImg from './assets/logobgn.png';
+
 const Preloader = ({ onComplete }) => {
   const [percentage, setPercentage] = useState(0);
 
@@ -12,7 +14,7 @@ const Preloader = ({ onComplete }) => {
     const counter = { val: 0 };
     gsap.to(counter, {
       val: 100,
-      duration: 3, // Slightly longer for more "repair" feel
+      duration: 3.5, // Slightly slower for more impact
       ease: "power2.inOut",
       onUpdate: () => {
         setPercentage(Math.floor(counter.val));
@@ -35,11 +37,19 @@ const Preloader = ({ onComplete }) => {
       }
     });
 
-    // Icon & Text Animation
-    gsap.fromTo('.preloader-logo-wrapper', 
-      { opacity: 0, y: 20 }, 
-      { opacity: 1, y: 0, duration: 1, delay: 0.3, ease: "power3.out" }
+    // Logo & Text Animation
+    gsap.fromTo('.preloader-logo-img', 
+      { scale: 0.9, opacity: 0 }, 
+      { scale: 1, opacity: 1, duration: 1.2, delay: 0.2, ease: "power3.out" }
     );
+
+    gsap.to('.preloader-logo-img', {
+      scale: 1.05,
+      duration: 1.5,
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut"
+    });
 
     gsap.fromTo('.loading-icon', 
       { scale: 0.8, opacity: 0.5 }, 
@@ -51,7 +61,7 @@ const Preloader = ({ onComplete }) => {
     <div className="preloader-container">
       <div className="preloader-content">
         <div className="preloader-logo-wrapper">
-          <h1 className="preloader-logo">EVcare<span className="dot">.</span>AI</h1>
+          <img src={logoImg} alt="EVcare Logo" className="preloader-logo-img" />
           <p className="preloader-tagline">INTELLIGENCE BEHIND EVERY RIDE</p>
         </div>
 

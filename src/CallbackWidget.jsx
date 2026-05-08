@@ -26,25 +26,26 @@ const CallbackWidget = () => {
 
   const [status, setStatus] = useState('idle'); // idle, loading, success, error
 
-  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwyVVrAfVlde6dh6gbZubopoazG7VCNCoHhCY_leFxsnhuFNJDjVKQS7_GKjbRvIW0U/exec';
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzejqXCqcNrHCZ_z2ToV_PO1JqPMC0pF53MhoNkWT8JnD8tM4z47WM_u5i_bVppGfm-/exec';
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setStatus('loading');
 
     try {
+      const params = new URLSearchParams();
+      params.append('type', 'callback');
+      params.append('name', formData.name);
+      params.append('phone', formData.phone);
+      params.append('pincode', formData.pinCode);
+
       await fetch(SCRIPT_URL, {
         method: 'POST',
         mode: 'no-cors',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/x-www-form-urlencoded',
         },
-        body: JSON.stringify({
-          type: 'callback',
-          name: formData.name,
-          phone: formData.phone,
-          pincode: formData.pinCode
-        }),
+        body: params.toString(),
       });
 
       setStatus('success');

@@ -13,7 +13,7 @@ const EnquiryForm = () => {
   });
   const [status, setStatus] = useState('idle'); // idle, loading, success, error
 
-  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwyVVrAfVlde6dh6gbZubopoazG7VCNCoHhCY_leFxsnhuFNJDjVKQS7_GKjbRvIW0U/exec';
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzejqXCqcNrHCZ_z2ToV_PO1JqPMC0pF53MhoNkWT8JnD8tM4z47WM_u5i_bVppGfm-/exec';
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -24,16 +24,22 @@ const EnquiryForm = () => {
     setStatus('loading');
 
     try {
+      const params = new URLSearchParams();
+      params.append('type', 'enquiry');
+      params.append('name', formData.name);
+      params.append('email', formData.email);
+      params.append('phone', formData.phone);
+      params.append('userType', formData.userType);
+      params.append('companyName', formData.companyName);
+      params.append('message', formData.message);
+
       await fetch(SCRIPT_URL, {
         method: 'POST',
         mode: 'no-cors',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/x-www-form-urlencoded',
         },
-        body: JSON.stringify({
-          type: 'enquiry',
-          ...formData
-        }),
+        body: params.toString(),
       });
 
       setStatus('success');

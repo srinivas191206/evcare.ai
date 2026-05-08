@@ -1,24 +1,68 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Footer.css';
-import { Globe, MessageCircle, Send, Share2, Phone, Mail } from 'lucide-react';
+import { Globe, MessageCircle, Send, Share2, Phone, Mail, Check } from 'lucide-react';
 
 const Footer = () => {
+  const [email, setEmail] = useState('');
+  const [status, setStatus] = useState('idle'); // idle, loading, success
+
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwyVVrAfVlde6dh6gbZubopoazG7VCNCoHhCY_leFxsnhuFNJDjVKQS7_GKjbRvIW0U/exec';
+
+  const handleSubscribe = async (e) => {
+    e.preventDefault();
+    if (!email) return;
+    setStatus('loading');
+
+    try {
+      await fetch(SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          type: 'subscriber',
+          email: email
+        }),
+      });
+
+      setStatus('success');
+      setEmail('');
+      setTimeout(() => setStatus('idle'), 5000);
+    } catch (error) {
+      console.error('Subscription error:', error);
+      setStatus('idle');
+    }
+  };
+
   return (
     <footer className="main-footer">
-      {/* ... (keep newsletter row same) */}
       <div className="footer-newsletter">
         <div className="newsletter-container">
-          <h2 className="newsletter-text">Subscribe to learn about our latest news</h2>
-          <div className="newsletter-input-wrapper">
-            <input type="email" placeholder="Enter your email" />
-            <button className="newsletter-btn">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
+          <h2 className="newsletter-text">
+            {status === 'success' ? 'Thank you for subscribing!' : 'Subscribe to learn about our latest news'}
+          </h2>
+          <form className="newsletter-input-wrapper" onSubmit={handleSubscribe}>
+            <input 
+              type="email" 
+              placeholder={status === 'success' ? 'Subscription active' : 'Enter your email'} 
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              disabled={status === 'loading' || status === 'success'}
+            />
+            <button className="newsletter-btn" type="submit" disabled={status === 'loading' || status === 'success'}>
+              {status === 'loading' ? (
+                <div className="spinner-small"></div>
+              ) : status === 'success' ? (
+                <Check size={24} color="#10b981" />
+              ) : (
+                <Send size={24} />
+              )}
             </button>
-          </div>
+          </form>
         </div>
       </div>
+      {/* ... (rest of footer) */}
 
       {/* MAIN FOOTER CONTENT */}
       <div className="footer-main-content">

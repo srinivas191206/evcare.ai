@@ -24,11 +24,39 @@ const CallbackWidget = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const [status, setStatus] = useState('idle'); // idle, loading, success, error
+
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwyVVrAfVlde6dh6gbZubopoazG7VCNCoHhCY_leFxsnhuFNJDjVKQS7_GKjbRvIW0U/exec';
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Callback requested:', formData);
-    alert('Request received! We will call you back shortly.');
-    setIsOpen(false);
+    setStatus('loading');
+
+    try {
+      await fetch(SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          type: 'callback',
+          name: formData.name,
+          phone: formData.phone,
+          pincode: formData.pinCode
+        }),
+      });
+
+      setStatus('success');
+      setFormData({ name: '', phone: '', pinCode: '' });
+      setTimeout(() => {
+        setIsOpen(false);
+        setStatus('idle');
+      }, 2000);
+    } catch (error) {
+      console.error('Callback error:', error);
+      setStatus('error');
+    }
   };
 
   return (
@@ -86,7 +114,9 @@ const CallbackWidget = () => {
               />
             </div>
 
-            <button type="submit" className="widget-submit-btn">Submit</button>
+            <button type="submit" className="widget-submit-btn" disabled={status === 'loading'}>
+              {status === 'loading' ? 'Sending...' : status === 'success' ? 'Request Sent!' : 'Submit'}
+            </button>
 
             <p className="policy-text">
               By clicking on 'Submit' you are agreeing to our <span>Privacy Policy</span> and are allowing us (EVcare.AI) and our service partners to get in touch with you.

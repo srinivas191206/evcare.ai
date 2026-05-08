@@ -7,19 +7,50 @@ const EnquiryForm = () => {
     name: '',
     email: '',
     phone: '',
-    userType: 'owner',
+    userType: 'individual',
     companyName: '',
     message: ''
   });
+  const [status, setStatus] = useState('idle'); // idle, loading, success, error
+
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwyVVrAfVlde6dh6gbZubopoazG7VCNCoHhCY_leFxsnhuFNJDjVKQS7_GKjbRvIW0U/exec';
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    alert('Thank you for your enquiry. We will get back to you soon.');
+    setStatus('loading');
+
+    try {
+      await fetch(SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          type: 'enquiry',
+          ...formData
+        }),
+      });
+
+      setStatus('success');
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        userType: 'individual',
+        companyName: '',
+        message: ''
+      });
+      
+      setTimeout(() => setStatus('idle'), 5000);
+    } catch (error) {
+      console.error('Submission error:', error);
+      setStatus('error');
+    }
   };
 
   return (
@@ -76,7 +107,9 @@ const EnquiryForm = () => {
                 <textarea name="message" placeholder="How can we help you?" value={formData.message} onChange={handleChange} rows="2"></textarea>
               </div>
 
-              <button type="submit" className="modern-submit-btn">Send Enquiry</button>
+              <button type="submit" className="enquiry-submit-btn" disabled={status === 'loading'}>
+              {status === 'loading' ? 'Sending...' : status === 'success' ? 'Sent Successfully!' : 'Send Enquiry'}
+            </button>
             </form>
           </div>
 

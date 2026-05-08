@@ -1,0 +1,93 @@
+.preloader-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #0a0a0a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  overflow: hidden;
+}
+
+.preloader-content {
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4rem;
+}
+
+.preloader-logo-wrapper {
+  text-align: center;
+}
+
+.preloader-logo {
+  font-family: 'Chillax', sans-serif;
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.05em;
+  margin-bottom: 0.5rem;
+}
+
+.preloader-logo .dot {
+  color: #10b981;
+}
+
+.preloader-tagline {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: #555555;
+  font-weight: 600;
+}
+
+/* FOOTER / PROGRESS */
+.preloader-footer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.progress-bar-container {
+  width: 100%;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.05);
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: #10b981;
+  transition: width 0.1s linear;
+}
+
+.percentage-display {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  gap: 0.5rem;
+  font-family: 'Chillax', sans-serif;
+  color: #ffffff;
+}
+
+.current-percent {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.total-percent {
+  font-size: 1rem;
+  color: #333333;
+  font-weight: 500;
+}

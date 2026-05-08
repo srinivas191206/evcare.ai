@@ -16,6 +16,7 @@ import HowItWorks from './HowItWorks';
 import AppShowcase from './AppShowcase';
 import CallbackWidget from './CallbackWidget';
 import Footer from './Footer';
+import Preloader from './Preloader';
 import heroImg from './assets/header.png';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -23,6 +24,7 @@ gsap.registerPlugin(ScrollTrigger);
 function App() {
   const containerRef = useRef(null);
   const scrollBlurRef = useRef(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     // Animate the feature blocks appearing as you scroll
@@ -62,39 +64,42 @@ function App() {
   }, []);
 
   return (
-    <div className="app-container" ref={containerRef}>
-      <Header />
-      
-      {/* Scrollable Content Layers */}
-      <div className="content-container">
+    <>
+      {loading && <Preloader onComplete={() => setLoading(false)} />}
+      <div className="app-container" ref={containerRef}>
+        <Header />
         
-        <section className="section hero hero-main">
-          <img src={heroImg} alt="EVcare.AI" className="hero-background" />
-          <div className="hero-overlay"></div>
-          <div className="hero-edge-blur"></div>
-          <div className="hero-scroll-blur" ref={scrollBlurRef}></div>
+        {/* Scrollable Content Layers */}
+        <div className="content-container">
           
-          <div className="hero-content">
-            <h1 className="hero-title fade-in-up brand-text">EVcare.AI</h1>
-            <p className="hero-subtitle fade-in-up delay-1">Intelligent EV diagnostics and mobility support powered by AI.</p>
-            <a href="#services" className="hero-btn fade-in-up delay-2">Explore Solutions</a>
-          </div>
-        </section>
-
-        <div id="features"><HowItWorks /></div>
-        <div id="diagnostics"><DashboardShowcase /></div>
-        <div id="savings"><SavingsCalculator /></div>
-        <div id="services"><Services /></div>
-        
-        <div id="fleet"><AppShowcase /></div>
-        <div id="about"><WhyCareEV /></div>
-        <div id="enquiry"><EnquiryForm /></div>
-        <CallbackWidget />
-        <Footer />
-
+          <section className="section hero hero-main">
+            <img src={heroImg} alt="EVcare.AI" className="hero-background" />
+            <div className="hero-overlay"></div>
+            <div className="hero-edge-blur"></div>
+            <div className="hero-scroll-blur" ref={scrollBlurRef}></div>
+            
+            <div className="hero-content">
+              <h1 className="hero-title fade-in-up brand-text">EVcare.AI</h1>
+              <p className="hero-subtitle fade-in-up delay-1">Intelligent EV diagnostics and mobility support powered by AI.</p>
+              <a href="#services" className="hero-btn fade-in-up delay-2">Explore Solutions</a>
+            </div>
+          </section>
+  
+          <div id="features"><HowItWorks /></div>
+          <div id="diagnostics"><DashboardShowcase /></div>
+          <div id="savings"><SavingsCalculator /></div>
+          <div id="services"><Services /></div>
+          
+          <div id="fleet"><AppShowcase /></div>
+          <div id="about"><WhyCareEV /></div>
+          <div id="enquiry"><EnquiryForm /></div>
+          <CallbackWidget />
+          <Footer />
+  
+        </div>
       </div>
-    </div>
+    </>
   );
-}
+};
 
 export default App;

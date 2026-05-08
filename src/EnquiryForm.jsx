@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Send } from 'lucide-react';
 import './EnquiryForm.css';
 import scooterBg from './assets/enquiry_hero_scooter.png';
 
@@ -114,8 +115,20 @@ const EnquiryForm = () => {
               </div>
 
               <button type="submit" className="enquiry-submit-btn" disabled={status === 'loading'}>
-              {status === 'loading' ? 'Sending...' : status === 'success' ? 'Sent Successfully!' : 'Send Enquiry'}
-            </button>
+                {status === 'loading' ? (
+                  <>
+                    <div className="spinner-small" style={{ marginRight: '10px' }}></div>
+                    Sending...
+                  </>
+                ) : status === 'success' ? (
+                  'Sent Successfully!'
+                ) : (
+                  <>
+                    Send Enquiry
+                    <Send size={18} style={{ marginLeft: '12px' }} />
+                  </>
+                )}
+              </button>
             </form>
           </div>
 

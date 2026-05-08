@@ -164,24 +164,29 @@
   padding-right: 30px !important;
 }
 
-.modern-submit-btn {
-  margin-top: 0.5rem;
+.enquiry-submit-btn {
+  margin-top: 1.5rem;
   background: #111111;
   color: #ffffff;
   border: none;
-  padding: 12px;
+  padding: 16px 32px;
   border-radius: 100px;
-  font-size: 0.85rem;
+  font-size: 0.95rem;
   font-weight: 800;
   cursor: pointer;
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.1em;
   position: relative;
   overflow: hidden;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
-.modern-submit-btn::after {
+.enquiry-submit-btn::after {
   content: "";
   position: absolute;
   top: -50%;
@@ -193,14 +198,19 @@
   transition: opacity 0.3s ease;
 }
 
-.modern-submit-btn:hover {
+.enquiry-submit-btn:hover {
   background: #10b981;
-  transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 10px 20px rgba(16, 185, 129, 0.2);
+  transform: translateY(-2px) scale(1.01);
+  box-shadow: 0 12px 24px rgba(16, 185, 129, 0.25);
 }
 
-.modern-submit-btn:hover::after {
+.enquiry-submit-btn:hover::after {
   opacity: 1;
+}
+
+.enquiry-submit-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
 }
 
 /* RIGHT: WORLD-CLASS TYPOGRAPHY */

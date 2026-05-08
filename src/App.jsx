@@ -75,7 +75,7 @@ function App() {
           <div className="hero-scroll-blur" ref={scrollBlurRef}></div>
           
           <div className="hero-content">
-            <h1 className="hero-title fade-in-up brand-text">India's Premier AI-Driven<br />EV Support Ecosystem</h1>
+            <h1 className="hero-title fade-in-up brand-text">EVcare.AI</h1>
             <p className="hero-subtitle fade-in-up delay-1">Intelligent EV diagnostics and mobility support powered by AI.</p>
             <a href="#services" className="hero-btn fade-in-up delay-2">Explore Solutions</a>
           </div>

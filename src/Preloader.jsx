@@ -2,10 +2,6 @@ import React, { useEffect, useState } from 'react';
 import './Preloader.css';
 import gsap from 'gsap';
 
-import { Bike, Wrench, Zap } from 'lucide-react';
-
-import logoImg from './assets/logobgn.png';
-
 const Preloader = ({ onComplete }) => {
   const [percentage, setPercentage] = useState(0);
 
@@ -14,7 +10,7 @@ const Preloader = ({ onComplete }) => {
     const counter = { val: 0 };
     gsap.to(counter, {
       val: 100,
-      duration: 3.5, // Slightly slower for more impact
+      duration: 3.5, 
       ease: "power2.inOut",
       onUpdate: () => {
         setPercentage(Math.floor(counter.val));
@@ -38,22 +34,9 @@ const Preloader = ({ onComplete }) => {
     });
 
     // Logo & Text Animation
-    gsap.fromTo('.preloader-logo-img', 
-      { scale: 0.9, opacity: 0 }, 
-      { scale: 1, opacity: 1, duration: 1.2, delay: 0.2, ease: "power3.out" }
-    );
-
-    gsap.to('.preloader-logo-img', {
-      scale: 1.05,
-      duration: 1.5,
-      repeat: -1,
-      yoyo: true,
-      ease: "sine.inOut"
-    });
-
-    gsap.fromTo('.loading-icon', 
-      { scale: 0.8, opacity: 0.5 }, 
-      { scale: 1.1, opacity: 1, duration: 0.8, repeat: -1, yoyo: true, ease: "sine.inOut" }
+    gsap.fromTo('.preloader-logo', 
+      { scale: 0.9, opacity: 0, y: 20 }, 
+      { scale: 1, opacity: 1, y: 0, duration: 1.2, delay: 0.2, ease: "power3.out" }
     );
   }, [onComplete]);
 
@@ -61,14 +44,8 @@ const Preloader = ({ onComplete }) => {
     <div className="preloader-container">
       <div className="preloader-content">
         <div className="preloader-logo-wrapper">
-          <img src={logoImg} alt="EVcare Logo" className="preloader-logo-img" />
+          <h1 className="preloader-logo">EVcare<span className="dot">.</span>AI</h1>
           <p className="preloader-tagline">INTELLIGENCE BEHIND EVERY RIDE</p>
-        </div>
-
-        <div className="preloader-icons">
-          <Wrench className="loading-icon icon-wrench" size={32} />
-          <Bike className="loading-icon icon-bike" size={48} />
-          <Zap className="loading-icon icon-zap" size={32} />
         </div>
         
         <div className="preloader-footer">

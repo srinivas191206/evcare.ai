@@ -25,37 +25,27 @@
   text-align: center;
 }
 
-.preloader-logo-img {
-  width: 120px;
-  height: auto;
-  margin-bottom: 1.5rem;
-  filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.1));
+.preloader-logo {
+  font-family: 'Chillax', sans-serif;
+  font-size: 4.5rem; /* Larger, premium scale */
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.05em;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+}
+
+.preloader-logo .dot {
+  color: #10b981;
 }
 
 .preloader-tagline {
   font-family: 'Poppins', sans-serif;
   font-size: 0.85rem;
   text-transform: uppercase;
-  letter-spacing: 0.35rem; /* More breathability */
+  letter-spacing: 0.4rem; /* More cinematic spacing */
   color: #666666;
   font-weight: 600;
-}
-
-.preloader-icons {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 2rem;
-  color: #10b981;
-}
-
-.loading-icon {
-  opacity: 0.8;
-  filter: drop-shadow(0 0 15px rgba(16, 185, 129, 0.3));
-}
-
-.icon-bike {
-  color: #ffffff;
 }
 
 /* FOOTER / PROGRESS */

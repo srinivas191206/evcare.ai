@@ -1,97 +1,110 @@
-.preloader-container.light-theme {
-  background: #ffffff;
-  color: #111111;
+.preloader-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #0a0a0a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  overflow: hidden;
 }
 
 .preloader-content {
   width: 100%;
-  height: 100%;
-  max-width: none;
+  max-width: 400px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  padding: 10vh 0;
   align-items: center;
+  gap: 4rem;
+}
+
+.preloader-logo-wrapper {
+  text-align: center;
 }
 
 .preloader-logo {
-  color: #111111;
-  font-size: 4rem;
+  font-family: 'Chillax', sans-serif;
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.05em;
+  margin-bottom: 0.5rem;
+}
+
+.preloader-logo .dot {
+  color: #10b981;
 }
 
 .preloader-tagline {
-  color: #888888;
-  letter-spacing: 0.5rem;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.35rem; /* More breathability */
+  color: #666666;
+  font-weight: 600;
 }
 
-/* BIKE PATH */
-.bike-path {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  width: 100%;
-  height: 100px;
-  transform: translateY(-50%);
-  overflow: hidden;
-}
-
-.bike-traveler {
-  position: absolute;
-  color: #10b981;
+.preloader-icons {
   display: flex;
-  flex-direction: column;
   align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  color: #10b981;
 }
 
-.bike-trail {
-  width: 40px;
-  height: 2px;
-  background: linear-gradient(to left, #10b981, transparent);
-  margin-top: 5px;
-  opacity: 0.3;
+.loading-icon {
+  opacity: 0.8;
+  filter: drop-shadow(0 0 15px rgba(16, 185, 129, 0.3));
+}
+
+.icon-bike {
+  color: #ffffff;
 }
 
 /* FOOTER / PROGRESS */
 .preloader-footer {
   width: 100%;
-  max-width: 600px;
-  padding: 0 40px;
-}
-
-.percentage-row {
   display: flex;
-  align-items: center;
-  gap: 2rem;
-  margin-bottom: 1rem;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
-.percent-num {
-  font-family: 'Chillax', sans-serif;
-  font-size: 3rem;
-  font-weight: 800;
-  color: #111111;
-  min-width: 120px;
-}
-
-.loading-bar-full {
-  flex: 1;
+.progress-bar-container {
+  width: 100%;
   height: 2px;
-  background: #f0f0f0;
+  background: rgba(255, 255, 255, 0.05);
   position: relative;
+  overflow: hidden;
 }
 
-.loading-bar-progress {
+.progress-bar-fill {
   position: absolute;
+  top: 0;
+  left: 0;
   height: 100%;
   background: #10b981;
   transition: width 0.1s linear;
 }
 
-.loading-status {
-  font-family: 'Poppins', sans-serif;
-  font-size: 0.7rem;
-  letter-spacing: 0.2rem;
-  color: #bbbbbb;
-  text-align: right;
-  font-weight: 600;
+.percentage-display {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  gap: 0.5rem;
+  font-family: 'Chillax', sans-serif;
+  color: #ffffff;
+}
+
+.current-percent {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.total-percent {
+  font-size: 1rem;
+  color: #333333;
+  font-weight: 500;
 }

@@ -12,70 +12,63 @@ const Preloader = ({ onComplete }) => {
     const counter = { val: 0 };
     gsap.to(counter, {
       val: 100,
-      duration: 3.5,
-      ease: "power1.inOut",
+      duration: 3, // Slightly longer for more "repair" feel
+      ease: "power2.inOut",
       onUpdate: () => {
         setPercentage(Math.floor(counter.val));
+      },
+      onComplete: () => {
+        // Final transition out
+        const tl = gsap.timeline();
+        tl.to('.preloader-content', {
+          opacity: 0,
+          y: -20,
+          duration: 0.8,
+          ease: "power3.in"
+        })
+        .to('.preloader-container', {
+          y: '-100%',
+          duration: 1,
+          ease: "expo.inOut",
+          onComplete: onComplete
+        });
       }
     });
 
-    // Bike Travel Animation (Curved Path)
-    gsap.fromTo('.bike-traveler', 
-      { 
-        x: '-10vw', 
-        y: '20px',
-        opacity: 0,
-        rotate: -5
-      }, 
-      { 
-        x: '110vw', 
-        y: '-20px', // Creates a subtle curve up
-        opacity: 1,
-        rotate: 5,
-        duration: 3.5,
-        ease: "power1.inOut",
-        onComplete: () => {
-          const tl = gsap.timeline();
-          tl.to('.preloader-container', {
-            opacity: 0,
-            duration: 0.8,
-            ease: "power2.inOut",
-            onComplete: onComplete
-          });
-        }
-      }
+    // Icon & Text Animation
+    gsap.fromTo('.preloader-logo-wrapper', 
+      { opacity: 0, y: 20 }, 
+      { opacity: 1, y: 0, duration: 1, delay: 0.3, ease: "power3.out" }
     );
 
-    // Initial Logo Reveal
-    gsap.fromTo('.preloader-logo-wrapper', 
-      { opacity: 0, scale: 0.9 }, 
-      { opacity: 1, scale: 1, duration: 1, ease: "power3.out" }
+    gsap.fromTo('.loading-icon', 
+      { scale: 0.8, opacity: 0.5 }, 
+      { scale: 1.1, opacity: 1, duration: 0.8, repeat: -1, yoyo: true, ease: "sine.inOut" }
     );
   }, [onComplete]);
 
   return (
-    <div className="preloader-container light-theme">
+    <div className="preloader-container">
       <div className="preloader-content">
         <div className="preloader-logo-wrapper">
           <h1 className="preloader-logo">EVcare<span className="dot">.</span>AI</h1>
           <p className="preloader-tagline">INTELLIGENCE BEHIND EVERY RIDE</p>
         </div>
 
-        <div className="bike-path">
-          <div className="bike-traveler">
-            <Bike size={64} strokeWidth={1.5} />
-            <div className="bike-trail"></div>
-          </div>
+        <div className="preloader-icons">
+          <Wrench className="loading-icon icon-wrench" size={32} />
+          <Bike className="loading-icon icon-bike" size={48} />
+          <Zap className="loading-icon icon-zap" size={32} />
         </div>
         
         <div className="preloader-footer">
-          <div className="percentage-row">
-            <span className="percent-num">{percentage}%</span>
-            <div className="loading-bar-full">
-              <div className="loading-bar-progress" style={{ width: `${percentage}%` }}></div>
-            </div>
+          <div className="progress-bar-container">
+            <div className="progress-bar-fill" style={{ width: `${percentage}%` }}></div>
           </div>
-          <p className="loading-status">INITIALIZING SYSTEMS...</p>
+          <div className="percentage-display">
+            <span className="current-percent">{percentage}</span>
+            <span className="total-percent">/ 100</span>
+          </div>
         </div>
       </div>
     </div>

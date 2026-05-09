@@ -10,31 +10,58 @@ const HowItWorks = () => {
   const textRef = useRef(null);
 
   useEffect(() => {
+    const text = "HOW EVcare.AI WORKS?";
+    
     let ctx = gsap.context(() => {
-      // Create a timeline for the reveal effect
+      // Typing animation - triggers once when section comes into view
+      gsap.to({}, {
+        duration: 1.5,
+        repeat: 0,
+        onUpdate: function() {
+          const progress = this.progress();
+          const charCount = Math.floor(progress * text.length);
+          if (textRef.current) {
+            textRef.current.textContent = text.slice(0, charCount);
+          }
+        },
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top 80%",
+          toggleActions: "play none none none"
+        }
+      });
+
+      // Existing zoom reveal timeline
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top top",
-          end: "+=50%", // Duration of the pin/reveal
-          scrub: 1, // Smooth scrub
+          end: "+=100%", 
+          scrub: 0.5,
           pin: true,
-          pinSpacing: false, // Magic: This prevents pushing the next section down!
+          pinSpacing: false,
         }
       });
 
-      // Zoom the text and fade out the entire section's background and content
-      tl.to(textRef.current, { scale: 1.5, opacity: 0, duration: 1 }, 0)
-        .to(containerRef.current, { backgroundColor: "rgba(255, 255, 255, 0)", duration: 1 }, 0);
+      tl.to(textRef.current, { 
+        scale: 4, 
+        opacity: 0, 
+        filter: "blur(10px)",
+        duration: 1 
+      }, 0)
+      .to(containerRef.current, { 
+        backgroundColor: "transparent", 
+        duration: 0.8 
+      }, 0);
     }, containerRef);
 
-    return () => ctx.revert(); // cleanup on unmount
+    return () => ctx.revert();
   }, []);
 
   return (
     <section className="how-it-works-section" ref={containerRef}>
       <div className="hiw-content">
-        <h2 ref={textRef} className="hiw-title brand-text">HOW EVcare.AI WORKS</h2>
+        <h2 ref={textRef} className="hiw-title brand-text typing-cursor"></h2>
       </div>
     </section>
   );

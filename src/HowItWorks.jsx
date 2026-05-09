@@ -13,10 +13,9 @@ const HowItWorks = () => {
     const text = "HOW EVcare.AI WORKS?";
     
     let ctx = gsap.context(() => {
-      // Typing animation - triggers once when section comes into view
+      // Typing animation - re-triggers when section comes into view
       gsap.to({}, {
         duration: 1.5,
-        repeat: 0,
         onUpdate: function() {
           const progress = this.progress();
           const charCount = Math.floor(progress * text.length);
@@ -27,12 +26,18 @@ const HowItWorks = () => {
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top 80%",
-          toggleActions: "play none none none",
-          // Ensure text is fully visible if user reloads or navigates directly
-          onEnter: () => {
-             if (textRef.current && textRef.current.textContent === "") {
-               // Normal play happens
-             }
+          toggleActions: "restart none none none"
+        },
+        onComplete: () => {
+          // Only auto-scroll the first time the animation completes
+          if (!window.hasAutoScrolledHIW) {
+            window.hasAutoScrolledHIW = true;
+            setTimeout(() => {
+              const nextSection = document.querySelector('.dashboard-showcase');
+              if (nextSection) {
+                nextSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }
+            }, 800);
           }
         }
       });

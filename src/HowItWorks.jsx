@@ -28,6 +28,15 @@ const HowItWorks = () => {
           trigger: containerRef.current,
           start: "top 80%",
           toggleActions: "play none none none"
+        },
+        onComplete: () => {
+          // Wait briefly then auto-scroll to the next section
+          setTimeout(() => {
+            const nextSection = document.querySelector('.dashboard-showcase');
+            if (nextSection) {
+              nextSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+          }, 800);
         }
       });
 
@@ -36,23 +45,14 @@ const HowItWorks = () => {
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top top",
-          end: "+=100%", 
-          scrub: 0.5,
+          end: "+=50%", 
           pin: true,
           pinSpacing: false,
         }
       });
 
-      tl.to(textRef.current, { 
-        scale: 4, 
-        opacity: 0, 
-        filter: "blur(10px)",
-        duration: 1 
-      }, 0)
-      .to(containerRef.current, { 
-        backgroundColor: "transparent", 
-        duration: 0.8 
-      }, 0);
+      tl.to(textRef.current, { scale: 1.5, opacity: 0, duration: 1 }, 0)
+        .to(containerRef.current, { backgroundColor: "rgba(255, 255, 255, 0)", duration: 1 }, 0);
     }, containerRef);
 
     return () => ctx.revert();

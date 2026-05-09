@@ -48,7 +48,7 @@ const DashboardShowcase = () => {
       },
       {
         root: null,
-        rootMargin: "-20% 0px -20% 0px", // Trigger when the text block is in the middle 60% of the screen
+        rootMargin: "-48% 0px -48% 0px", // Trigger when the text block is exactly in the middle of the screen
         threshold: 0
       }
     );

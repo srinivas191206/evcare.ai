@@ -12,18 +12,24 @@ const WhyCareEV = () => {
           <h3 className="why-care-subtitle">India's Premier EV Service & Support Ecosystem</h3>
           
           <p className="why-care-description">
-            Headquartered in Visakhapatnam, InnoVibe EVcare.AI is your all-in-one solution for EV repairs, insurance, fleet management, and genuine spares. We bridge the gap between OEMs and owners to make electric mobility smarter, greener, and more reliable across India.
+            Headquartered in Visakhapatnam, <strong>InnoVibe EVcare.AI</strong> is your all-in-one solution for EV repairs, insurance, fleet management, and genuine spares. We bridge the gap between OEMs and owners to make electric mobility smarter, greener, and more reliable across India.
           </p>
 
           <div className="info-grid-compact">
             <div className="info-item">
-              <h4>Service Network</h4>
-              <p>One central EV Hub per region supported by five satellite stations to ensure zero downtime and maximum convenience.</p>
+              <div className="info-icon-small"><Zap size={20} /></div>
+              <div className="info-text">
+                <h4>Service Network</h4>
+                <p>One central EV Hub per region supported by five satellite stations to ensure zero downtime and maximum convenience.</p>
+              </div>
             </div>
 
             <div className="info-item">
-              <h4>Rapid Expansion</h4>
-              <p>Expanding from South India to the North, our goal is 100 franchises per state within three years to strengthen India’s EV infrastructure.</p>
+              <div className="info-icon-small"><TrendingUp size={20} /></div>
+              <div className="info-text">
+                <h4>Rapid Expansion</h4>
+                <p>Expanding from South India to the North, our goal is 100 franchises per state within three years to strengthen India’s EV infrastructure.</p>
+              </div>
             </div>
           </div>
 

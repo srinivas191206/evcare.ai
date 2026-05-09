@@ -1,14 +1,18 @@
 .services-section {
   width: 100%;
   background: #ffffff;
-  padding: 15vh 0;
+  padding: 8vh 0 5vh;
   position: relative;
   overflow: hidden;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .services-header {
   text-align: center;
-  margin-bottom: 5rem;
+  margin-bottom: 2.5rem;
   padding: 0 10%;
 }
 
@@ -24,7 +28,7 @@
 
 .services-title {
   font-family: 'Chillax', sans-serif;
-  font-size: 3.5rem;
+  font-size: 2.8rem;
   font-weight: 800;
   color: #111111;
   letter-spacing: -0.04em;
@@ -55,8 +59,8 @@
   max-width: 1400px;
   width: 100%;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 5rem;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 4rem;
   align-items: center;
   position: relative;
 }
@@ -105,7 +109,7 @@
 
 .slide-title {
   font-family: 'Chillax', sans-serif;
-  font-size: 3rem;
+  font-size: 2.5rem;
   font-weight: 800;
   color: #111111;
   line-height: 1.1;
@@ -170,11 +174,11 @@
 .image-frame {
   position: relative;
   width: 100%;
-  aspect-ratio: 1/1.1;
-  border-radius: 48px;
+  aspect-ratio: 1.2/1;
+  border-radius: 40px;
   overflow: hidden;
   z-index: 2;
-  box-shadow: 0 50px 100px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
 }
 
 .slide-image {
@@ -202,19 +206,19 @@
 
 /* CONTROLS */
 .slideshow-controls {
-  margin-top: 3rem; /* Brought up for better visibility */
+  margin-top: 2rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 4rem;
+  gap: 3rem;
 }
 
 .nav-arrow {
   background: #fbfbfd;
   border: none;
   color: #111111;
-  width: 80px;
-  height: 80px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   display: flex;
   align-items: center;

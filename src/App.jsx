@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import { Canvas } from '@react-three/fiber';
 import { Environment, ContactShadows } from '@react-three/drei';
 import gsap from 'gsap';
@@ -18,8 +19,12 @@ import CallbackWidget from './CallbackWidget';
 import Footer from './Footer';
 import Preloader from './Preloader';
 import heroImg from './assets/header.png';
+import PrivacyPolicy from './legal/PrivacyPolicy';
+import TermsAndConditions from './legal/TermsAndConditions';
+import RefundPolicy from './legal/RefundPolicy';
 
 gsap.registerPlugin(ScrollTrigger);
+
 
 function App() {
   const containerRef = useRef(null);
@@ -64,42 +69,50 @@ function App() {
   }, []);
 
   return (
-    <>
-      {loading && <Preloader onComplete={() => setLoading(false)} />}
-      <div className="app-container" ref={containerRef}>
-        <Header />
-        
-        {/* Scrollable Content Layers */}
-        <div className="content-container">
-          
-          <section className="section hero hero-main">
-            <img src={heroImg} alt="EVcare.AI" className="hero-background" />
-            <div className="hero-overlay"></div>
-            <div className="hero-edge-blur"></div>
-            <div className="hero-scroll-blur" ref={scrollBlurRef}></div>
+    <Routes>
+      <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+      <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+      <Route path="/refund-policy" element={<RefundPolicy />} />
+      <Route path="/" element={
+        <>
+          {loading && <Preloader onComplete={() => setLoading(false)} />}
+          <div className="app-container" ref={containerRef}>
+            <Header />
             
-            <div className="hero-content">
-              <h1 className="hero-title fade-in-up brand-text">EVcare.AI</h1>
-              <p className="hero-subtitle fade-in-up delay-1">Intelligent EV diagnostics and mobility support powered by AI.</p>
-              <a href="#services" className="hero-btn fade-in-up delay-2">Explore Solutions</a>
+            {/* Scrollable Content Layers */}
+            <div className="content-container">
+              
+              <section className="section hero hero-main">
+                <img src={heroImg} alt="EVcare.AI" className="hero-background" />
+                <div className="hero-overlay"></div>
+                <div className="hero-edge-blur"></div>
+                <div className="hero-scroll-blur" ref={scrollBlurRef}></div>
+                
+                <div className="hero-content">
+                  <h1 className="hero-title fade-in-up brand-text">EVcare.AI</h1>
+                  <p className="hero-subtitle fade-in-up delay-1">Intelligent EV diagnostics and mobility support powered by AI.</p>
+                  <a href="#services" className="hero-btn fade-in-up delay-2">Explore Solutions</a>
+                </div>
+              </section>
+      
+              <div id="features"><HowItWorks /></div>
+              <div id="diagnostics"><DashboardShowcase /></div>
+              <div id="savings"><SavingsCalculator /></div>
+              <div id="services"><Services /></div>
+              
+              <div id="fleet"><AppShowcase /></div>
+              <div id="about"><WhyCareEV /></div>
+              <div id="enquiry"><EnquiryForm /></div>
+              <CallbackWidget />
+              <Footer />
+      
             </div>
-          </section>
-  
-          <div id="features"><HowItWorks /></div>
-          <div id="diagnostics"><DashboardShowcase /></div>
-          <div id="savings"><SavingsCalculator /></div>
-          <div id="services"><Services /></div>
-          
-          <div id="fleet"><AppShowcase /></div>
-          <div id="about"><WhyCareEV /></div>
-          <div id="enquiry"><EnquiryForm /></div>
-          <CallbackWidget />
-          <Footer />
-  
-        </div>
-      </div>
-    </>
+          </div>
+        </>
+      } />
+    </Routes>
   );
 };
 
 export default App;
+

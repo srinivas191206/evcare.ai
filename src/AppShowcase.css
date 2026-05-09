@@ -113,6 +113,20 @@
   margin-bottom: 1.5rem;
 }
 
+/* APP LOGO STYLING */
+.app-showcase-logo {
+  width: 240px;
+  height: auto;
+  margin-bottom: 2.5rem;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 20px rgba(0,0,0,0.03));
+  transition: transform 0.4s ease;
+}
+
+.app-showcase-logo:hover {
+  transform: scale(1.05);
+}
+
 /* STORE BUTTONS */
 .store-buttons {
   display: flex;

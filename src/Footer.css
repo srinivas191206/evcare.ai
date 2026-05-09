@@ -76,41 +76,57 @@
 }
 
 .footer-grid {
-  max-width: 1300px;
+  max-width: 1400px;
   margin: 0 auto;
-  padding: 0 40px;
+  padding: 0 60px;
   display: grid;
-  grid-template-columns: 1.5fr 1fr 1fr 1fr 1.5fr;
-  gap: 4rem;
+  grid-template-columns: 2fr 1fr 1fr 1fr 2fr;
+  gap: 10rem; /* Ultrawide gap */
 }
 
-.footer-brand .footer-logo {
+.footer-logo-img {
+  height: 80px; /* Slightly adjusted for balance */
+  width: auto;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.footer-brand-name {
   font-family: 'Chillax', sans-serif;
   font-size: 1.8rem;
-  font-weight: 900;
-  letter-spacing: -0.05em;
-  margin-bottom: 0.5rem;
+  font-weight: 800;
   color: #ffffff;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
 }
 
 .brand-tagline {
-  font-size: 0.9rem;
-  color: #888888;
-  margin-bottom: 2rem;
+  font-size: 0.95rem;
+  color: #666666;
+  font-weight: 500;
+  max-width: 250px;
+}
+
+.footer-right {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
 .brand-hq p {
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: #555555;
   font-weight: 700;
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.4rem;
 }
 
 .brand-hq span {
-  font-size: 0.9rem;
+  font-size: 1rem;
   color: #cccccc;
+  font-weight: 500;
 }
 
 .footer-column h4 {
@@ -145,21 +161,67 @@
 /* CONTACT & SOCIAL */
 .social-links {
   display: flex;
-  gap: 1.5rem;
-  margin-bottom: 2rem;
+  gap: 1.2rem;
+  margin-top: 0.5rem;
 }
 
 .social-icon {
-  color: #ffffff;
+  color: #888888;
   cursor: pointer;
   transition: all 0.3s ease;
-  opacity: 0.7;
+  opacity: 0.8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
 }
 
 .social-icon:hover {
   color: #10b981;
   opacity: 1;
   transform: translateY(-3px);
+}
+
+/* GOOGLE PLAY BUTTON */
+.footer-store-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 0.7rem 1.2rem;
+  text-decoration: none;
+  color: #ffffff;
+  transition: all 0.3s ease;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.footer-store-btn:hover {
+  background: rgba(16, 185, 129, 0.15);
+  border-color: #10b981;
+  transform: translateY(-2px);
+}
+
+.footer-btn-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-btn-sub {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #888888;
+}
+
+.footer-btn-main {
+  font-size: 1.05rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: #ffffff;
 }
 
 .contact-details {

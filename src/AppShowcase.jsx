@@ -7,7 +7,7 @@ import middleImg from './assets/middle.png';
 import rightImg from './assets/right.png';
 import rightrightImg from './assets/rightright.png';
 import backImg from './assets/back.png';
-import appLogo from './assets/logobgn.png';
+import appLogo from './assets/applogo.png';
 
 const AppleIcon = () => (
   <svg viewBox="0 0 384 512" width="28" height="28" fill="currentColor" className="store-icon">
@@ -68,6 +68,7 @@ const AppShowcase = () => {
 
         {/* RIGHT: Text Content */}
         <div className="app-text-content">
+          <img src={appLogo} alt="EVcare App Logo" className="app-showcase-logo" />
           <h3 className="app-subtitle">
             Intelligence Behind Every Ride
           </h3>

@@ -2,13 +2,16 @@ import React, { useState } from 'react';
 import { Home, MapPin, Wrench, CheckCircle2, XCircle } from 'lucide-react';
 import './SavingsCalculator.css';
 
-import costImg from './assets/cost.png';
+import homeImg from './assets/home.png';
+import roadImg from './assets/road.png';
+import garageImg from './assets/garage.png';
 
 const experiences = [
   {
     id: 'home',
     label: 'Home Service',
     icon: Home,
+    image: homeImg,
     heading: 'Home Service',
     subheading: 'Professional EV support delivered directly to your doorstep.',
     traditional: [
@@ -28,6 +31,7 @@ const experiences = [
     id: 'road',
     label: 'On-Road Assistance',
     icon: MapPin,
+    image: roadImg,
     heading: 'On-Road Assistance',
     subheading: 'Instant EV rescue and smart roadside support whenever you need it.',
     traditional: [
@@ -47,6 +51,7 @@ const experiences = [
     id: 'garage',
     label: 'Garage Visit',
     icon: Wrench,
+    image: garageImg,
     heading: 'Garage Visit',
     subheading: 'Advanced EV servicing powered by smart diagnostics and expert technicians.',
     traditional: [
@@ -71,8 +76,15 @@ const ExperienceSelector = () => {
   return (
     <section className="experience-selector-section background-mode">
       
-      {/* Moving Background Image */}
-      <img src={costImg} alt="EVcare Service" className="cost-background-image" />
+      {/* Preloaded Dynamic Background Images — stacked, only active one is visible */}
+      {experiences.map((exp, index) => (
+        <img
+          key={exp.id}
+          src={exp.image}
+          alt={exp.label}
+          className={`cost-background-image ${index === activeTab ? 'active' : ''}`}
+        />
+      ))}
 
       {/* The White Gradient Highlight for text readability */}
       <div className="highlight-film"></div>

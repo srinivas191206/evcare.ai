@@ -13,20 +13,21 @@ const HowItWorks = () => {
     const text = "HOW EVcare.AI WORKS?";
     
     let ctx = gsap.context(() => {
-      // Typing animation - re-triggers when section comes into view
-      gsap.to({}, {
+      // Typing animation - re-triggers whenever entering the section
+      const typingAnim = gsap.to({ charCount: 0 }, {
+        charCount: text.length,
         duration: 1.5,
+        ease: "none",
         onUpdate: function() {
-          const progress = this.progress();
-          const charCount = Math.floor(progress * text.length);
           if (textRef.current) {
-            textRef.current.textContent = text.slice(0, charCount);
+            textRef.current.textContent = text.slice(0, Math.floor(this.targets()[0].charCount));
           }
         },
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top 80%",
-          toggleActions: "restart none none none"
+          onEnter: () => typingAnim.restart(),
+          onEnterBack: () => typingAnim.restart(),
         },
         onComplete: () => {
           // Only auto-scroll the first time the animation completes

@@ -27,16 +27,13 @@ const HowItWorks = () => {
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top 80%",
-          toggleActions: "play none none none"
-        },
-        onComplete: () => {
-          // Wait briefly then auto-scroll to the next section
-          setTimeout(() => {
-            const nextSection = document.querySelector('.dashboard-showcase');
-            if (nextSection) {
-              nextSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-          }, 800);
+          toggleActions: "play none none none",
+          // Ensure text is fully visible if user reloads or navigates directly
+          onEnter: () => {
+             if (textRef.current && textRef.current.textContent === "") {
+               // Normal play happens
+             }
+          }
         }
       });
 
